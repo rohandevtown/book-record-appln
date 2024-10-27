@@ -1,4 +1,8 @@
 const express = require("express");
+const dotenv = require("dotenv")
+
+const DbConnection = require("./databaseConnection")
+
 const {users} = require("./data/users.json")
 
 
@@ -6,7 +10,10 @@ const {users} = require("./data/users.json")
 const usersRouter =  require("./routes/users")
 const booksRouter = require("./routes/books")
 
+dotenv.config()
+
 const app = express();
+DbConnection()
 
 const PORT = 4000;
 

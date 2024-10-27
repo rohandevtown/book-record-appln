@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/rohandevtown/book-record-appln#readme",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.7.3",
     "nodemon": "^3.1.7"
   }
 }

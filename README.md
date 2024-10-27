@@ -30,3 +30,6 @@ GET: Get all issued books
 Basic (3 months)
 Standard (6 months)
 Premium (12 months)
+
+sequel
+sql
