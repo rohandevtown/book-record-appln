@@ -18,12 +18,12 @@ const userSchema = new Schema({
     },
      issuedBook: {
            type: mongoose.Schema.Types.ObjectId,
-           ref: Book,
+           ref: "Book",
         required: false
     },
      returnDate: {
            type: String,
-        required: true
+        required: false
     }, subscriptionType: {
            type: String,
         required: true

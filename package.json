@@ -4,7 +4,7 @@
   "description": "book record mgt system",
   "main": "index.js",
   "scripts": {
-    "strat": "node index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "repository": {

@@ -1,6 +1,11 @@
 const express = require("express");
 const {books} = require("../data/books.json");
 
+// const BookModel = require("../models/book-model");
+// const UserModel = require("../models/user-model");
+
+const {BookModel, UserModel} = require("../models");
+const { getAllBooks, getSingleBookById, addNewBook, updateBookById } = require("../controllers/book-controller");
 
 const router = express.Router();
 
@@ -14,12 +19,14 @@ const router = express.Router();
  * Paramaters: None
  */
 
-router.get("/", (req, res)=>{
-    res.status(200).json({
-        success: true,
-        data: books
-    })
-})
+// router.get("/", (req, res)=>{
+//     res.status(200).json({
+//         success: true,
+//         data: books
+//     })
+// })
+
+router.get("/", getAllBooks)
 
 
 
@@ -30,20 +37,22 @@ router.get("/", (req, res)=>{
  * Access: Public
  * Paramaters: id
  */
-router.get("/:id", (req, res)=>{
-    const {id} = req.params;
-    const book = books.find((each) => each.id == id);
-    if(!book){
-        return res.status(404).json({
-            success: false,
-            message: "Book not found"
-        })
-    }
-    return res.status(200).json({
-        success: true,
-        data: book
-    })
-})
+// router.get("/:id", (req, res)=>{
+//     const {id} = req.params;
+//     const book = books.find((each) => each.id == id);
+//     if(!book){
+//         return res.status(404).json({
+//             success: false,
+//             message: "Book not found"
+//         })
+//     }
+//     return res.status(200).json({
+//         success: true,
+//         data: book
+//     })
+// })
+
+router.get("/:id", getSingleBookById)
 
 
 
@@ -54,25 +63,27 @@ router.get("/:id", (req, res)=>{
  * Access: Public
  * Paramaters: None
  */
-router.post("/", (req, res)=>{
-    const {id, name, author, genre, price, publisher} = req.body;
+// router.post("/", (req, res)=>{
+//     const {id, name, author, genre, price, publisher} = req.body;
 
-    const book = books.find((each) => each.id == id);
+//     const book = books.find((each) => each.id == id);
 
-    if(book){
-        return res.status(404).json({
-            success: false,
-            message: "Book exists with the given id"
-        })
-    }
+//     if(book){
+//         return res.status(404).json({
+//             success: false,
+//             message: "Book exists with the given id"
+//         })
+//     }
 
-    books.push({id, name,  author, genre, price, publisher})
-    return res.status(201).json({
-        success: true,
-        data: books
-    })
+//     books.push({id, name,  author, genre, price, publisher})
+//     return res.status(201).json({
+//         success: true,
+//         data: books
+//     })
 
-})
+// })
+
+router.post("/", addNewBook)
 
 
 
@@ -83,33 +94,36 @@ router.post("/", (req, res)=>{
  * Access: Public
  * Paramaters: id
  */
-router.put("/:id", (req, res)=>{
-    const {id} = req.params;
-    const {data} = req.body;
+// router.put("/:id", (req, res)=>{
+//     const {id} = req.params;
+//     const {data} = req.body;
 
-    const book = books.find((each) => each.id == id);
-     if(!book){
-        return res.status(404).json({
-            success: false,
-            message: "Book not found for the given id"
-        })
-    }
+//     const book = books.find((each) => each.id == id);
+//      if(!book){
+//         return res.status(404).json({
+//             success: false,
+//             message: "Book not found for the given id"
+//         })
+//     }
 
-    const updatedBook = books.map((each)=> {
-        if(each.id ==id){
-            return {
-                ...each,
-                ...data,
-            }
-        }
-        return each;
-    })
+//     const updatedBook = books.map((each)=> {
+//         if(each.id ==id){
+//             return {
+//                 ...each,
+//                 ...data,
+//             }
+//         }
+//         return each;
+//     })
 
-    return res.status(200).json({
-        success: true,
-        data: updatedBook
-    })
-})
+//     return res.status(200).json({
+//         success: true,
+//         data: updatedBook
+//     })
+// })
+
+
+router.put("/:id", updateBookById)
 
 
 /**
